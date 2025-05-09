@@ -9,22 +9,27 @@ const calculateTip = (event) => {
     const value = formData.get("value"); // valor da refeição
     // pegar o percentage
     const percentage = formData.get("percentage"); // porcentagem da gorjeta
+    const percentageValue = calculatePercentage(value,percentage)
 
     console.log (value, percentage); // so par fazer teste no consle
 
-    const tagTotalValue = document.getElementById("totalvalue");
+    //criando os elementos
+
+    const tagTotalValue = document.getElementById("totalvalue"); //valor da refeição = valor da refeição + gorjeta
     const tagTipValue = document.getElementById("tipvalue"); //valor da gorjeta
-    const tagOriginalValue = document.getElementById("originalvalue"); 
+    const tagOriginalValue = document.getElementById("originalvalue"); //valor da refeição
 
     // agora colocar os textos na tela 
 
-    tagOrinalValue.textContent = value; //valor da refeição = valor original
-    tagTipValue.textContent = 
-    tagTotalValue.textContent = 
+    tagOriginalValue.textContent = value + "R$"; //valor da refeição 
+    tagTipValue.textContent = percentageValue + "R$"       // valor da gorjeta
+    tagTotalValue.textContent = `${Number(value) + percentageValue}` + "R$" //valor da refeição + gorjeta
+    
 
         
 };
 
     const calculatePercentage = (value, percentage) => {
-        const percentageValue
+        const percentageValue = (value/100)*percentage;
+        return percentageValue;
 };
